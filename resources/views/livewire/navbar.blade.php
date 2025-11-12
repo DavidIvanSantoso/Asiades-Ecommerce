@@ -13,7 +13,7 @@
             <div class="hidden md:flex space-x-8 items-center">
                 <a href="/" class="text-gray-700 hover:text-amber-600 font-medium">Home</a>
                 <a href="/products" class="text-gray-700 hover:text-amber-600 font-medium">Products</a>
-                <a href="/about" class="text-gray-700 hover:text-amber-600 font-medium">About</a>
+                <a href="/aboutpage" class="text-gray-700 hover:text-amber-600 font-medium">About</a>
                 <a href="/contact" class="text-gray-700 hover:text-amber-600 font-medium">Contact</a>
             </div>
 
@@ -48,7 +48,7 @@
     {{-- Mobile menu --}}
     <div class="md:hidden px-4 pb-4 space-y-2">
         <a href="/" class="block text-gray-700 hover:text-amber-600 font-medium">Home</a>
-        <a href="/shop" class="block text-gray-700 hover:text-amber-600 font-medium">Shop</a>
+        <a href="/products" class="block text-gray-700 hover:text-amber-600 font-medium">Shop</a>
         <a href="/about" class="block text-gray-700 hover:text-amber-600 font-medium">About</a>
         <a href="/contact" class="block text-gray-700 hover:text-amber-600 font-medium">Contact</a>
         <a href="/cart" class="block text-gray-700 hover:text-amber-600 font-medium">Cart ({{ $cartCount }})</a>

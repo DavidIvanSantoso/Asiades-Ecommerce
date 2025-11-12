@@ -57,7 +57,7 @@
                     <button onclick="decreaseQty()" class="px-3 py-1 bg-gray-200 rounded">-</button>
                     <span id="quantity" class="font-semibold">1</span>
                     <button onclick="increaseQty()" class="px-3 py-1 bg-gray-200 rounded">+</button>
-                    <button class="bg-amber-600 text-white px-4 py-2 rounded hover:bg-amber-700 flex-1">
+                    <button class="bg-amber-600 text-white px-4 py-2 rounded hover:bg-amber-700 flex-1" onclick="addToCart()">
                         Add to Cart
                     </button>
                 </div>
@@ -70,128 +70,113 @@
 
 @push('scripts')
 <script>
-    const products = [
-    {
-        name: "Classic Chair",
-        price: 299.99,
-        category: "Chair",
-        image: "https://img.freepik.com/free-photo/interior-design-with-armchair_1048-2988.jpg?w=740",
-        colors: ["#8B4513","#D2B48C","#000","#FFF"],
-        description: "A comfortable classic chair made from high-quality wood and fabric, perfect for your living room or study."
-    },
-    {
-        name: "Modern Sofa",
-        price: 499.99,
-        category: "Sofa",
-        image: "https://img.freepik.com/free-photo/modern-living-room-interior-design_53876-137107.jpg?w=740",
-        colors: ["#808080","#F5F5DC","#000","#FFFFFF"],
-        description: "A sleek modern sofa with plush cushions and contemporary design for maximum comfort and style."
-    },
-    {
-        name: "Wooden Table",
-        price: 199.99,
-        category: "Table",
-        image: "https://img.freepik.com/free-photo/scandinavian-living-room-interior_53876-145849.jpg?w=740",
-        colors: ["#A0522D","#8B4513","#000","#D2B48C"],
-        description: "Elegant wooden table crafted from premium oak, ideal for dining rooms or workspaces."
-    },
-    {
-        name: "Office Chair",
-        price: 249.99,
-        category: "Chair",
-        image: "https://img.freepik.com/free-photo/interior-design-with-armchair_1048-2988.jpg?w=740",
-        colors: ["#000","#FFF","#8B4513"],
-        description: "Ergonomic office chair with adjustable height and lumbar support for long hours of work."
-    },
-    {
-        name: "Lampu Hias",
-        price: 99.99,
-        category: "Lamp",
-        image: "https://img.freepik.com/free-photo/lamp-modern_1048-1234.jpg?w=740",
-        colors: ["#FFD700","#FFFACD","#FF6347"],
-        description: "Decorative lamp with warm lighting to create a cozy atmosphere in any room."
-    },
-    {
-        name: "Luxury Sofa",
-        price: 799.99,
-        category: "Sofa",
-        image: "https://img.freepik.com/free-photo/modern-luxury-living-room_53876-140221.jpg?w=740",
-        colors: ["#000000","#808080","#C0C0C0"],
-        description: "Premium luxury sofa with soft leather upholstery and deep seating for ultimate relaxation."
-    },
-    {
-        name: "Coffee Table",
-        price: 149.99,
-        category: "Table",
-        image: "https://img.freepik.com/free-photo/modern-coffee-table-interior_53876-146789.jpg?w=740",
-        colors: ["#8B4513","#D2B48C","#A0522D"],
-        description: "Minimalist coffee table with sturdy wooden legs and smooth surface, perfect for any living space."
-    },
-    {
-        name: "Recliner Chair",
-        price: 399.99,
-        category: "Chair",
-        image: "https://img.freepik.com/free-photo/leather-recliner-chair_53876-152341.jpg?w=740",
-        colors: ["#000000","#654321","#FFF"],
-        description: "Comfortable recliner chair with soft leather and adjustable reclining positions for ultimate relaxation."
-    },
-    {
-        name: "Desk Lamp",
-        price: 59.99,
-        category: "Lamp",
-        image: "https://img.freepik.com/free-photo/modern-desk-lamp_1048-1240.jpg?w=740",
-        colors: ["#FFD700","#C0C0C0","#808080"],
-        description: "Modern desk lamp with adjustable arm and focused lighting for study or work."
-    },
-    {
-        name: "Bookshelf",
-        price: 299.99,
-        category: "Shelf",
-        image: "https://img.freepik.com/free-photo/wooden-bookshelf_53876-135678.jpg?w=740",
-        colors: ["#A0522D","#8B4513","#000"],
-        description: "Spacious wooden bookshelf to store books, decorative items, or office supplies."
-    },
-    {
-        name: "Nightstand",
-        price: 129.99,
-        category: "Table",
-        image: "https://img.freepik.com/free-photo/nightstand-bedroom-interior_53876-145900.jpg?w=740",
-        colors: ["#8B4513","#D2B48C","#FFF"],
-        description: "Compact nightstand with drawer storage, perfect next to your bed."
-    },
-    {
-        name: "Floor Lamp",
-        price: 89.99,
-        category: "Lamp",
-        image: "https://img.freepik.com/free-photo/floor-lamp-living-room_1048-1200.jpg?w=740",
-        colors: ["#FFD700","#F5F5DC","#C0C0C0"],
-        description: "Tall floor lamp providing soft ambient light for your living room or study."
-    },
-    {
-        name: "Dining Chair",
-        price: 199.99,
-        category: "Chair",
-        image: "https://img.freepik.com/free-photo/wooden-dining-chair_53876-147800.jpg?w=740",
-        colors: ["#8B4513","#D2B48C","#000","#FFF"],
-        description: "Elegant dining chair with solid wood frame and comfortable seat cushion."
-    },
-    {
-        name: "Sectional Sofa",
-        price: 899.99,
-        category: "Sofa",
-        image: "https://img.freepik.com/free-photo/modern-sectional-sofa-living-room_53876-138900.jpg?w=740",
-        colors: ["#808080","#C0C0C0","#000"],
-        description: "Large sectional sofa with modular design for flexible living room arrangements."
-    },
-    {
-        name: "TV Stand",
-        price: 249.99,
-        category: "Shelf",
-        image: "https://img.freepik.com/free-photo/modern-tv-stand_53876-150000.jpg?w=740",
-        colors: ["#8B4513","#A0522D","#D2B48C"],
-        description: "Stylish TV stand with multiple shelves for media devices and decorative items."
-    }
-];
+    window.addToCart = function() {
+   
+        Livewire.dispatch('increaseCart');
+    
+    alert(`${qty} item(s) added to cart!`);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+     const products = [
+        {
+            name: "Classic Chair",
+            price: 299.99,
+            category: "Chair",
+            image: "https://furniture123.co.uk/Images/BUNKOR00195433_3_Supersize.jpg?v=79",
+            colors: ["#8B4513","#D2B48C","#000","#FFF"],
+            description: "A comfortable classic chair made from high-quality wood and fabric, perfect for your living room or study."
+        },
+        {
+            name: "Modern Sofa",
+            price: 499.99,
+            category: "Sofa",
+            image: "https://urbanmood.sg/cdn/shop/products/LogoLicious_20220726_203613.png?v=1658841684&width=1080",
+            colors: ["#808080","#F5F5DC","#000","#FFFFFF"],
+            description: "A sleek modern sofa with plush cushions and contemporary design for maximum comfort and style."
+        },
+        {
+            name: "Wooden Table",
+            price: 199.99,
+            category: "Table",
+            image: "https://ushashriram.in/cdn/shop/products/61WS_A6yZBL.jpg?v=1689857091",
+            colors: ["#A0522D","#8B4513","#000","#D2B48C"],
+            description: "Elegant wooden table crafted from premium oak, ideal for dining rooms or workspaces."
+        },
+        {
+            name: "Office Chair",
+            price: 249.99,
+            category: "Chair",
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNkdeuar4L_kX8kfZXWNoQXp4v_rk9aQVMrw&s",
+            colors: ["#000","#FFF","#8B4513"],
+            description: "Ergonomic office chair with adjustable height and lumbar support for long hours of work."
+        },
+        {
+            name: "Lampu Hias",
+            price: 99.99,
+            category: "Lamp",
+            image: "https://www.ikea.com/us/en/images/products/flyghoejd-table-lamp-brass-beige__1244487_pe921207_s5.jpg?f=s",
+            colors: ["#FFD700","#FFFACD","#FF6347"],
+            description: "Decorative lamp with warm lighting to create a cozy atmosphere in any room."
+        },
+        {
+            name: "Luxury Sofa",
+            price: 799.99,
+            category: "Sofa",
+            image: "https://www.estre.in/cdn/shop/files/2-min_d2bc49bf-1893-4118-bab5-8d0848d4d3fb.jpg?v=1743762905",
+            colors: ["#000000","#808080","#C0C0C0"],
+            description: "Premium luxury sofa with soft leather upholstery and deep seating for ultimate relaxation."
+        },
+        {
+            name: "Coffee Table",
+            price: 149.99,
+            category: "Table",
+            image: "https://upload.wikimedia.org/wikipedia/commons/7/7f/4Coffee_Table.jpg",
+            colors: ["#8B4513","#D2B48C","#A0522D"],
+            description: "Minimalist coffee table with sturdy wooden legs and smooth surface, perfect for any living space."
+        },
+        {
+            name: "Recliner Chair",
+            price: 399.99,
+            category: "Chair",
+            image: "https://ak1.ostkcdn.com/images/products/is/images/direct/fe9009bae827723313072548f9e9bd48e22158de/Art-Leon-Mid-century-Modern-Genuine-Leather-Lounge-Chair-Recliner.jpg",
+            colors: ["#000000","#654321","#FFF"],
+            description: "Comfortable recliner chair with soft leather and adjustable reclining positions for ultimate relaxation."
+        },
+        {
+            name: "Desk Lamp",
+            price: 59.99,
+            category: "Lamp",
+            image: "https://www.elmworkspace.com/wp-content/uploads/2018/01/modern-lamp.jpg",
+            colors: ["#FFD700","#C0C0C0","#808080"],
+            description: "Modern desk lamp with adjustable arm and focused lighting for study or work."
+        },
+        {
+            name: "Bookshelf",
+            price: 299.99,
+            category: "Shelf",
+            image: "https://i.etsystatic.com/10146012/r/il/26d147/4552924265/il_fullxfull.4552924265_d2sd.jpg",
+            colors: ["#A0522D","#8B4513","#000"],
+            description: "Spacious wooden bookshelf to store books, decorative items, or office supplies."
+        },
+        {
+            name: "Nightstand",
+            price: 129.99,
+            category: "Table",
+            image: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//catalog-image/MTA-92225330/ifurnholic_ifurnholic_charlotte_night_stand_-_meja_nakas_-_meja_samping_tempat_tidur_-_meja_sudut_minimalis_-_bedside_full02_ccqt688r.jpeg",
+            colors: ["#8B4513","#D2B48C","#FFF"],
+            description: "Compact nightstand with drawer storage, perfect next to your bed."
+        },
+        {
+            name: "Floor Lamp",
+            price: 89.99,
+            category: "Lamp",
+            image: "https://images-na.ssl-images-amazon.com/images/I/61mYNsEBJDL.jpg",
+            colors: ["#FFD700","#F5F5DC","#C0C0C0"],
+            description: "Tall floor lamp providing soft ambient light for your living room or study."
+        },
+       
+    ];
 
 
 
@@ -200,7 +185,8 @@ const searchInput = document.getElementById('searchInput');
 const pills = document.querySelectorAll('.pill');
 let selectedCategory = 'all';
 
-function renderProducts() {
+
+window.renderProducts = function() {
     const keyword = searchInput.value.toLowerCase();
     grid.innerHTML = '';
     const filtered = products.filter(p => 
@@ -264,22 +250,22 @@ pills.forEach(p => {
 renderProducts();
 
 //open modal
-let qty = 1;
+window.qty = 1;
 const quantityEl = document.getElementById('quantity');
 
-function increaseQty() {
+window.increaseQty = function() {
     qty++;
     quantityEl.textContent = qty;
 }
 
-function decreaseQty() {
+window.decreaseQty=function() {
     if (qty > 1) {
         qty--;
         quantityEl.textContent = qty;
     }
 }
 
-function openModal(product) {
+window.openModal=function(product) {
     document.getElementById('modalImage').src = product.image;
     document.getElementById('modalTitle').textContent = product.name;
     document.getElementById('modalDescription').textContent = product.description || 'No description available';
@@ -303,8 +289,12 @@ function openModal(product) {
     document.getElementById('productModal').classList.remove('hidden');
 }
 
-function closeModal() {
+window.closeModal=function() {
     document.getElementById('productModal').classList.add('hidden');
 }
+
+});
+   
+
 </script>
 @endpush

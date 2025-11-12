@@ -32,42 +32,42 @@ document.addEventListener("DOMContentLoaded", function() {
       {
         name: "Classic Chair",
         price: 299.99,
-        image: "https://img.freepik.com/free-photo/interior-design-with-armchair_1048-2988.jpg?w=740",
+        image: "https://furniture123.co.uk/Images/BUNKOR00195433_3_Supersize.jpg?v=79",
         colors: ["#8B4513", "#D2B48C", "#000000", "#FFFFFF"],
         category: "Chair"
       },
       {
         name: "Modern Sofa",
         price: 499.99,
-        image: "https://img.freepik.com/free-photo/modern-living-room-interior-design_53876-137107.jpg?w=740",
+        image: "https://www.estre.in/cdn/shop/files/2-min_d2bc49bf-1893-4118-bab5-8d0848d4d3fb.jpg?v=1743762905",
         colors: ["#808080", "#F5F5DC", "#000000"],
         category: "Sofa"
       },
       {
         name: "Wooden Table",
         price: 199.99,
-        image: "https://img.freepik.com/free-photo/scandinavian-living-room-interior_53876-145849.jpg?w=740",
+        image: "https://ushashriram.in/cdn/shop/products/61WS_A6yZBL.jpg?v=1689857091",
         colors: ["#A0522D", "#8B4513", "#000000"],
         category: "Table"
       },
       {
         name: "Elegant Lamp",
         price: 99.99,
-        image: "https://img.freepik.com/free-photo/modern-lamp-bedroom_53876-142214.jpg?w=740",
+        image: "https://www.ikea.com/us/en/images/products/flyghoejd-table-lamp-brass-beige__1244487_pe921207_s5.jpg?f=s",
         colors: ["#FFD700", "#E5E4E2", "#000000"],
         category: "Lamp"
       },
       {
         name: "Minimalist Table",
         price: 249.99,
-        image: "https://img.freepik.com/free-photo/wooden-table-interior_53876-133849.jpg?w=740",
+        image: "https://media.adorno.design/wp-content/uploads/2024/01/20110704/handcraft.laluz-_MG_0728.webp",
         colors: ["#8B5A2B", "#C2B280"],
         category: "Table"
       },
       {
         name: "Luxury Sofa",
         price: 799.99,
-        image: "https://img.freepik.com/free-photo/modern-sofa-living-room_53876-145803.jpg?w=740",
+        image: "https://i.pinimg.com/originals/c5/7d/36/c57d3673696d4b61de66d77ad421312a.jpg",
         colors: ["#444444", "#B8860B", "#FFFFFF"],
         category: "Sofa"
       }
@@ -97,9 +97,7 @@ document.addEventListener("DOMContentLoaded", function() {
               <p class="text-sm text-gray-600 mb-2">Available Colors:</p>
               <div class="flex space-x-2">${colorDots}</div>
             </div>
-            <a href="#" class="mt-4 inline-block bg-amber-600 hover:bg-amber-700 text-white font-semibold px-4 py-2 rounded-lg shadow transition-all">
-              Add to Cart
-            </a>
+          
           </div>
         </div>
       </div>

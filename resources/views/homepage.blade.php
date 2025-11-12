@@ -41,7 +41,7 @@
     </div>
     
   <!-- Tombol navigasi -->
-  <div class="swiper-button-prev !text-[#31694E] hover:!text-amber-500"></div>
+<div class="swiper-button-prev !text-[#31694E] hover:!text-amber-500"></div>
 <div class="swiper-button-next !text-[#31694E] hover:!text-amber-500"></div>
 
 

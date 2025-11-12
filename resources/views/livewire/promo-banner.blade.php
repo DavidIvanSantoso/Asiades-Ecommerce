@@ -18,7 +18,7 @@
             <p class="text-lg text-black-700 mb-6">
                 Nikmati <span class="font-semibold text-amber-700">diskon hingga 50%</span> untuk berbagai furniture pilihan hanya minggu ini!
             </p>
-            <a href="/shop" 
+            <a href="/products" 
                class="inline-block bg-amber-400 hover:bg-amber-600 text-white font-semibold px-6 py-3 rounded-lg shadow transition-all">
                 Belanja Sekarang
             </a>

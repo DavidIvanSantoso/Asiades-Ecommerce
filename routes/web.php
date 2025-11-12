@@ -9,6 +9,10 @@ Route::get('/', function () {
 //homepage
 Route::get('/', function () {
     return view('homepage');
+});
+//aboutpage
+Route::get('/aboutpage', function () {
+    return view('livewire.aboutpage');
 
 });
 
