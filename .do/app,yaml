@@ -1,0 +1,17 @@
+name: asiades-tes
+services:
+    - name: web
+      environment_slug: php
+      github:
+          branch: main
+          deploy_on_push: true
+      build_command: |
+          composer install --no-dev
+          php artisan key:generate
+          php artisan config:clear
+      run_command: heroku-php-apache2 public/
+      environment_variables:
+          APP_ENV: production
+          APP_DEBUG: false
+          DB_CONNECTION: sqlite
+          DB_DATABASE: /app/database/database.sqlite
