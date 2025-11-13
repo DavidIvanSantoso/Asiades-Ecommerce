@@ -42,6 +42,11 @@ return [
             'synchronous' => null,
             'transaction_mode' => 'DEFERRED',
         ],
+        'none' => [
+        'driver' => 'sqlite',
+        'database' => database_path('none.sqlite'),
+        'prefix' => '',
+        ],
 
         'mysql' => [
             'driver' => 'mysql',
