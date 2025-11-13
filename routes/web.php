@@ -21,4 +21,12 @@ Route::get('/products', function() {
     return view('livewire.product-page'); // products.blade.php
 });
 
+//cartpage
+Route::get('/cart', function () {
+    return view('cart');
+});
+
+Route::get('/contact', function () {
+    return view('livewire.contactpage');
+});
 

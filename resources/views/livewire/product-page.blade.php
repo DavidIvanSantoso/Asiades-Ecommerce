@@ -33,18 +33,14 @@
     <div id="productModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
         <div class="bg-white w-11/12 md:w-3/4 lg:w-2/3 rounded-lg overflow-hidden relative flex">
             
-            <!-- Tombol Close X -->
             <button onclick="closeModal()" 
                     class="absolute top-2 right-2 text-gray-600 hover:text-gray-800 text-2xl font-bold">
                 &times;
             </button>
-
-            <!-- Gambar produk kiri -->
             <div class="md:w-1/2 p-6">
                 <img id="modalImage" src="" alt="Product" class="w-full h-auto rounded">
             </div>
 
-            <!-- Info produk kanan -->
             <div class="md:w-1/2 p-6 flex flex-col justify-between">
                 <div>
                     <h2 id="modalTitle" class="text-2xl font-bold mb-2">Product Name</h2>
@@ -57,25 +53,49 @@
                     <button onclick="decreaseQty()" class="px-3 py-1 bg-gray-200 rounded">-</button>
                     <span id="quantity" class="font-semibold">1</span>
                     <button onclick="increaseQty()" class="px-3 py-1 bg-gray-200 rounded">+</button>
-                    <button class="bg-amber-600 text-white px-4 py-2 rounded hover:bg-amber-700 flex-1" onclick="addToCart()">
+                    <button class="bg-amber-600 text-white px-4 py-2 rounded hover:bg-amber-700 flex-1" onclick="addToCart(qty,selectedItem)">
                         Add to Cart
                     </button>
                 </div>
             </div>
          </div>
     </div>
+    
 </div>
 
 @endsection
 
 @push('scripts')
 <script>
-    window.addToCart = function() {
+   window.cartItems=JSON.parse(sessionStorage.getItem('cart')) || [];
+
+ //Tambah Jumlah Cart
+window.addToCart = function(qty,selectedItem) {
+    if(!selectedItem)return;
+    const exist=window.cartItems.find(i=>i.name===selectedItem.name);
+    if(exist){
+        exist.quantity+=qty;
+    }
+    else{
+        window.cartItems.push({
+            name: selectedItem.name,
+            price: selectedItem.price,
+            image: selectedItem.image,
+            quantity: qty,
+            category: selectedItem.category,
+            description: selectedItem.description,
+            colors: selectedItem.colors
+        });
+    }
+    Livewire.dispatch('increaseCart',[qty]);
    
-        Livewire.dispatch('increaseCart');
-    
+    sessionStorage.setItem('cart', JSON.stringify(window.cartItems));
+    console.log('Cart Items:', window.cartItems);
+
     alert(`${qty} item(s) added to cart!`);
-}
+}  
+
+// Tambah Produk ke Shopping Cart
 
 document.addEventListener('DOMContentLoaded', function() {
      const products = [
@@ -185,7 +205,6 @@ const searchInput = document.getElementById('searchInput');
 const pills = document.querySelectorAll('.pill');
 let selectedCategory = 'all';
 
-
 window.renderProducts = function() {
     const keyword = searchInput.value.toLowerCase();
     grid.innerHTML = '';
@@ -233,7 +252,7 @@ window.renderProducts = function() {
     });
 }
 
-// Event listeners
+
 searchInput.addEventListener('input', renderProducts);
 pills.forEach(p => {
     p.addEventListener('click', () => {
@@ -264,8 +283,11 @@ window.decreaseQty=function() {
         quantityEl.textContent = qty;
     }
 }
+//declare variabel untuk save item cart
+window.selectedItem=null;
 
 window.openModal=function(product) {
+    selectedItem=product;
     document.getElementById('modalImage').src = product.image;
     document.getElementById('modalTitle').textContent = product.name;
     document.getElementById('modalDescription').textContent = product.description || 'No description available';
