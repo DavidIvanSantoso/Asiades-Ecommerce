@@ -1,3 +1,12 @@
+## About Project
+<h1>Ini adalah project kecil pembuatan website E-commerce Furniture untuk Test Interview KPPA Asiadesc</h1>
+<p>Projek ini menggunakan framework Laravel</p>
+<p>Untuk preview website bisa akses link ini https://tesasiadesfurniture-5w3qp.ondigitalocean.app/</p>
+<p>Hosting website menggunakan Digital Ocean App Platform dengan spesifikasi 512MB RAM 1 VCPU 50 GB Bandwith</p>
+
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
