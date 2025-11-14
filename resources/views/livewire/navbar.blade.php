@@ -17,10 +17,8 @@
                 <a href="/contact" class="text-gray-700 hover:text-amber-600 font-medium">Contact</a>
             </div>
 
-            {{-- Right section --}}
+           
             <div class="flex items-center space-x-4">
-               
-                {{-- Cart --}}
                 <a href="/cart" class="relative inline-flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-700 hover:text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -46,6 +44,7 @@
     </div>
 
     {{-- Mobile menu --}}
+    @if($showMenu)
     <div class="md:hidden px-4 pb-4 space-y-2">
         <a href="/" class="block text-gray-700 hover:text-amber-600 font-medium">Home</a>
         <a href="/products" class="block text-gray-700 hover:text-amber-600 font-medium">Shop</a>
@@ -53,6 +52,7 @@
         <a href="/contact" class="block text-gray-700 hover:text-amber-600 font-medium">Contact</a>
         <a href="/cart" class="block text-gray-700 hover:text-amber-600 font-medium">Cart ({{ $cartCount }})</a>
     </div>
+    @endif
 </nav>
 
 </div>

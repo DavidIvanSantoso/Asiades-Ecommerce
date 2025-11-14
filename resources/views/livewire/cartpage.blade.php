@@ -119,9 +119,14 @@ function renderCart() {
 
 function removeFromCart(index) {
     const cart = JSON.parse(sessionStorage.getItem('cart')) || [];
-    cart.splice(index, 1);
-    sessionStorage.setItem('cart', JSON.stringify(cart));
-    renderCart();
+    if (cart[index]) {
+        const quantityToRemove = cart[index].quantity;
+        cart.splice(index, 1);
+        sessionStorage.setItem('cart', JSON.stringify(cart));
+        renderCart();
+        Livewire.dispatch('decreaseCart', [quantityToRemove]);
+        
+    }
 }
 
 function updateQuantity(index, qty) {
@@ -149,10 +154,12 @@ function confirmOrder(event) {
     alert('Order confirmed! Thank you for shopping with us.');
 
     sessionStorage.removeItem('cart');
+    
     renderCart();
-
     // reset form
     event.target.reset();
+    // reset cart count in navbar
+    Livewire.dispatch('resetCart');
 }
 
 document.addEventListener('DOMContentLoaded', renderCart);

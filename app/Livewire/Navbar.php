@@ -7,8 +7,9 @@ use Livewire\Component;
 class Navbar extends Component
 {
     public $cartCount = 0;
+    public $showMenu=false;
 
-    protected $listeners = ['increaseCart' => 'addCart'];
+    protected $listeners = ['increaseCart' => 'addCart','resetCart' => 'resetCart', 'decreaseCart' => 'decreaseCart'];
 
     public function mount()
     {
@@ -20,6 +21,17 @@ class Navbar extends Component
     {
         logger('ADD CARD dipanggil', array($qty));
         $this->cartCount += $qty;
+        session()->put('cart_count', $this->cartCount);
+    }
+    public function decreaseCart(int $qty)
+    {
+        logger('DECREASE CARD dipanggil', array($qty));
+        $this->cartCount -= $qty;
+        session()->put('cart_count', $this->cartCount);
+    }
+    public function resetCart(){
+        logger('REMOVE CARD dipanggil');
+        $this->cartCount = 0;
         session()->put('cart_count', $this->cartCount);
     }
 
